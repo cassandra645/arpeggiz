@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <img src="./assets/logos/arpeggiz-logo-base.png" alt="logo of arpeggiz" class="app-logo">
+      <img src="./assets/logos/arpeggiz-logo-base.png" alt="arpeggiz logo" class="app-logo">
     </header>
     <main>
       <div class="playerfull">
