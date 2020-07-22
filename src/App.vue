@@ -28,7 +28,7 @@
           <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="">
         </section>
         <div class="subBar">
-          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth, height: progressBarHeight }" class="progressBar"></div>
+          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth, height: progressBarHeight }" class="progressBar">{{ progressBar() }}</div>
         </div>
       </div>
       <section class="playlist scrollbar">
@@ -249,7 +249,9 @@ export default {
       this.play(this.current);
       }.bind(this));
       this.isPlaying = true;
+    },
 
+    progressBar () {
       console.log(this.player.currentTime);
       console.log(this.player.duration);
 
@@ -376,6 +378,10 @@ header
   padding: 5% ;
   padding-bottom: 0% ;
   min-height: 70vh;
+  /* background-image: url('assets/img/killing-joke.jpg'); */
+  /* background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
 }
 
 .playerfull {
