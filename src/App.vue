@@ -15,8 +15,6 @@
               <div class="style">- {{ current.style }} -</div>
             </h2>
           </div>
-          <div class="options">
-          </div>
         </section>
         <section class="controls">
           <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="">
@@ -374,13 +372,12 @@ header
 }
 
 .player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5% ;
   padding-bottom: 0% ;
   min-height: 73vh;
-  /* background-image: url('assets/img/killing-joke.jpg'); */
-  /* background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
 }
 
 .playerfull {
@@ -388,6 +385,10 @@ header
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center;
+}
+
+.song-description {
+
 }
 
 .song-title {
