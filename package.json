@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "simplebar-vue": "^1.6.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
