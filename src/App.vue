@@ -16,6 +16,9 @@
             </h2>
           </div>
         </section>
+        <section class="timer">
+         {{ turnSecondsToMinutes (player.currentTime) }} / {{ turnSecondsToMinutes (player.duration) }}
+        </section>
         <section class="controls">
           <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="">
           <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller">
@@ -25,7 +28,7 @@
           <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="">
         </section>
         <div class="sub-bar">
-          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateTime() }}</div>
+          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}</div>
         </div>
       </div>
       <section class="playlist scrollbar">
@@ -262,8 +265,23 @@ export default {
       }
     },
 
-    updateTime () {
+    updateProgressBar () {
       this.player.addEventListener('timeupdate', this.progressBar)
+    },
+
+    turnSecondsToMinutes (time) {
+      time = Number(time);
+      let minutes = Math.floor(time % 3600 / 60);
+      let seconds = Math.floor(time % 3600 % 60);
+
+      let minutesDisplay = this.timerDisplay(minutes);
+      let secondsDisplay = this.timerDisplay(seconds);
+      return minutesDisplay + ":" + secondsDisplay;
+    },
+
+    timerDisplay(timer) {
+      timer = timer > 0 ? (timer <= 9 ? "0" + timer : timer) : "00";
+      return timer;
     },
 
     pause () {
