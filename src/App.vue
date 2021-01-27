@@ -248,15 +248,13 @@ export default {
     },
 
     progressBar () {
-      console.log(this.player.currentTime);
-      console.log(this.player.duration);
-
-      this.fraction = this.player.currentTime / this.player.duration;
-      this.percent  = Math.ceil(this.fraction * 100);
-      this.progressBarWidth = this.percent + '%';
-      this.progressBarColor = "#0aebc5";
-
-      console.log(this.percent);
+      if(this.player.currentTime > 0)
+      {
+        this.fraction = this.player.currentTime / this.player.duration;
+        this.percent  = Math.ceil(this.fraction * 100);
+        this.progressBarWidth = this.percent + '%';
+        this.progressBarColor = "#0aebc5";
+      }
     },
 
     pause () {
