@@ -251,7 +251,7 @@ export default {
       if(this.player.currentTime > 0)
       {
         this.fraction = this.player.currentTime / this.player.duration;
-        this.percent  = Math.ceil(this.fraction * 100);
+        this.percent  = Math.abs(this.fraction * 100);
         this.progressBarWidth = this.percent + '%';
         this.progressBarColor = "#0aebc5";
       }
