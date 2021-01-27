@@ -25,7 +25,7 @@
           <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="">
         </section>
         <div class="sub-bar">
-          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ progressBar() }}</div>
+          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateTime() }}</div>
         </div>
       </div>
       <section class="playlist scrollbar">
@@ -255,6 +255,10 @@ export default {
         this.progressBarWidth = this.percent + '%';
         this.progressBarColor = "#0aebc5";
       }
+    },
+
+    updateTime () {
+      this.player.addEventListener('timeupdate', this.progressBar)
     },
 
     pause () {
