@@ -253,7 +253,12 @@ export default {
         this.fraction = this.player.currentTime / this.player.duration;
         this.percent  = Math.abs(this.fraction * 100);
         this.progressBarWidth = this.percent + '%';
-        this.progressBarColor = "#0aebc5";
+        if(this.isPlaying === true) {
+          this.progressBarColor = "#0aebc5";
+        }
+        else {
+          this.progressBarColor = " #ff7600";
+        }
       }
     },
 
