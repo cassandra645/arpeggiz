@@ -14,7 +14,7 @@
               <div class="album"> - {{ current.album }} - </div>
               <div class="style">- {{ current.style }} -</div>
               <div class="timer">
-                {{ turnSecondsToMinutes (player.currentTime) }} / {{ turnSecondsToMinutes (player.duration) }}
+                <span class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</span> / <span class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</span>
               </div>
             </h2>
           </div>
@@ -441,8 +441,19 @@ header
 }
 
 .timer {
-  margin-top: 15px;
-  color: #34314b;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 5px;
+  color: #b0adc4;
+  background-color:#1b182e77;
+  border-radius: 50px;
+  font-size: 0.7em;
+  font-weight: normal;
+  width: 60%;
+}
+
+.timer-duration {
+  font-weight: bold;
 }
 
 /**Options'appearance */
