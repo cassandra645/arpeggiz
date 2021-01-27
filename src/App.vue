@@ -24,8 +24,8 @@
           <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller">
           <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="">
         </section>
-        <div class="subBar">
-          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth, height: progressBarHeight }" class="progressBar">{{ progressBar() }}</div>
+        <div class="sub-bar">
+          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ progressBar() }}</div>
         </div>
       </div>
       <section class="playlist scrollbar">
@@ -48,7 +48,6 @@ export default {
       isPlaying: false,
       progressBarWidth: "",
       progressBarColor: "",
-      progressBarHeight: "8px",
       fraction: "",
       percent: "",
       player: new Audio(),
@@ -305,9 +304,13 @@ export default {
 
 <style>
 /**Layout */
-.subBar {
+.sub-bar {
   height: 8px;
   background-color: #1b182e;
+}
+
+.progress-bar {
+  height: inherit;
 }
 
 *
@@ -385,10 +388,6 @@ header
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center;
-}
-
-.song-description {
-
 }
 
 .song-title {
