@@ -4,7 +4,7 @@
       <img src="./assets/logos/arpeggiz-logo-base.png" alt="arpeggiz logo" class="app-logo">
     </header>
     <main>
-      <div class="playerfull" v-bind:style="{backgroundImage: `url(${current.backgd})`}">
+      <div class="playerfull" :style="{backgroundImage: `url(${current.backgd})`}">
         <section class="player">
           <div class="songdescription">
             <img v-bind:src="current.image" class="cover">
@@ -20,15 +20,15 @@
           </div>
         </section>
         <section class="controls">
-          <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="">
-          <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller">
-          <img v-if="!isPlaying" @click="play" class="play control" src="./assets/logos/play.png" alt="play controller">
-          <img v-else @click="pause" class="pause control" src="./assets/logos/pause.png" alt="pause controller">
-          <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller">
-          <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="">
+          <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="shuffle controller icon">
+          <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller icon">
+          <img v-if="!isPlaying" @click="play" class="play control" src="./assets/logos/play.png" alt="play controller icon">
+          <img v-else @click="pause" class="pause control" src="./assets/logos/pause.png" alt="pause controller icon">
+          <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller icon">
+          <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="repeat controller icon">
         </section>
         <div class="sub-bar">
-          <div v-bind:style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}</div>
+          <div :style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}</div>
         </div>
       </div>
       <section class="playlist scrollbar">
@@ -597,12 +597,12 @@ button {
   }
 
   .scrollbar {
-  width: 300px;
-  height: 100px;
-  overflow-y: scroll;
-  scrollbar-color: #0aebc5 #09080f50;
-  scrollbar-width: thin;
-}
+    width: 300px;
+    height: 100px;
+    overflow-y: scroll;
+    scrollbar-color: #302e3a #09080f50;
+    scrollbar-width: thin;
+  }
 
   .play, .pause
   {
