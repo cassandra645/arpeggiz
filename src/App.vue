@@ -13,11 +13,11 @@
               <div class="artist">{{ current.artist }}</div>
               <div class="album"> - {{ current.album }} - </div>
               <div class="style">- {{ current.style }} -</div>
+              <div class="timer">
+                {{ turnSecondsToMinutes (player.currentTime) }} / {{ turnSecondsToMinutes (player.duration) }}
+              </div>
             </h2>
           </div>
-        </section>
-        <section class="timer">
-         {{ turnSecondsToMinutes (player.currentTime) }} / {{ turnSecondsToMinutes (player.duration) }}
         </section>
         <section class="controls">
           <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="">
@@ -438,6 +438,11 @@ header
   font-variant: normal;
   color:  #ffffff;
   margin-top: 15px;
+}
+
+.timer {
+  margin-top: 15px;
+  color: #34314b;
 }
 
 /**Options'appearance */
