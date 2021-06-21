@@ -6,15 +6,15 @@
     <main>
       <div class="playerfull" :style="{backgroundImage: `url(${current.backgd})`}">
         <section class="player">
-          <div class="songdescription">
+          <div class="song-description">
+            <div class="song-informations">
+              <h2 class="title"> {{ current.title }}</h2>
+              <div>~</div>
+              <div class="artist">{{ current.artist }}</div>
+              <div class="album"> - {{ current.album }} - </div>
+              <div class="style">- {{ current.style }} -</div>
+            </div>
             <img v-bind:src="current.image" class="cover">
-              <div class="song-informations">
-                <h2 class="song-title"> "{{ current.title }}"</h2>
-                <div>~</div>
-                <div class="artist">{{ current.artist }}</div>
-                <div class="album"> - {{ current.album }} - </div>
-                <div class="style">- {{ current.style }} -</div>
-              </div>
           </div>
         </section>
         <div class="progress-bar-container">
@@ -65,10 +65,55 @@ export default {
           'Shitataru Morou',
           'Dir en Grey',
           'Dum Spiro Spero',
-          'Metal',
+          'Progressive Metal',
           require('./assets/sounds/shitataru-morou.mp3'),
           require('./assets/img/dum-spiro-spero.jpg'),
           require('./assets/img/direngrey.jpg')
+        ),
+        new Song(
+          'You \'ve Seen the Butcher',
+          'Deftones',
+          'Diamond Eyes',
+          'Metal',
+          require('./assets/sounds/youve-seen-the-butcher.mp3'),
+          require('./assets/img/diamond-eyes.jpg'),
+          require('./assets/img/deftones.jpg')
+        ),
+        new Song(
+          'I Speak Astronomy',
+          'Jinjer',
+          'King of Everything',
+          'Progressive Metal',
+          require('./assets/sounds/i-speak-astronomy.mp3'),
+          require('./assets/img/king-of-everything.jpg'),
+          require('./assets/img/jinjer.jpg')
+        ),
+        new Song(
+          'Ghost Of Perdition',
+          'Opeth',
+          'Ghost Reveries',
+          'Progressive Metal',
+          require('./assets/sounds/ghost-of-perdition.mp3'),
+          require('./assets/img/ghost-reveries.jpg'),
+          require('./assets/img/opeth.jpg')
+        ),
+        new Song(
+          'Theft Wandering And Lost',
+          'Cocteau Twins',
+          'Four-Calendar Café',
+          'Dream Pop',
+          require('./assets/sounds/theft-and-wandering-around-lost.mp3'),
+          require('./assets/img/four-calendar-cafe.jpg'),
+          require('./assets/img/cocteau-twins.jpg')
+        ),
+        new Song(
+          'The Headmaster Ritual',
+          'The Smiths',
+          'Meat Is Murder',
+          'Post Punk',
+          require('./assets/sounds/the-headmaster-ritual.mp3'),
+          require('./assets/img/meat-is-murder.jpg'),
+          require('./assets/img/the-smiths.jpg')
         ),
         new Song(
           'For Jasmine',
@@ -78,42 +123,6 @@ export default {
           require('./assets/sounds/for-jasmine.mp3'),
           require('./assets/img/twilight-album.jpg'),
           require('./assets/img/boa.jpg')
-        ),
-        new Song(
-          'Sextape ',
-          'Deftones',
-          'Diamond Eyes',
-          'Metal',
-          require('./assets/sounds/sextape.mp3'),
-          require('./assets/img/diamond-eyes.jpg'),
-          require('./assets/img/deftones.jpg')
-        ),
-        new Song(
-          'Ghost Of Perdition',
-          'Opeth',
-          'Ghost Reveries',
-          'Metal',
-          require('./assets/sounds/ghost-of-perdition.mp3'),
-          require('./assets/img/ghost-reveries.jpg'),
-          require('./assets/img/opeth.jpg')
-        ),
-        new Song(
-          'Theft Wandering And Lost',
-          'Cocteau Twins',
-          'Four-Calendar Café',
-          'Dream-Pop',
-          require('./assets/sounds/theft-and-wandering-around-lost.mp3'),
-          require('./assets/img/four-calendar-cafe.jpg'),
-          require('./assets/img/cocteau-twins.jpg')
-        ),
-        new Song(
-          'The Headmaster Ritual',
-          'The Smiths',
-          'Meat Is Murder',
-          'Post-Punk',
-          require('./assets/sounds/the-headmaster-ritual.mp3'),
-          require('./assets/img/meat-is-murder.jpg'),
-          require('./assets/img/the-smiths.jpg')
         ),
         new Song(
           'Jigsaw Falling Into Place',
@@ -146,7 +155,7 @@ export default {
           'Latour',
           'Sukekiyo',
           'Immortalis',
-          'Metal',
+          'Progressive Metal',
           require('./assets/sounds/latour.mp3'),
           require('./assets/img/immortalis.jpg'),
           require('./assets/img/sukekiyo.jpg')
@@ -218,20 +227,29 @@ export default {
           'The Pot',
           'Tool',
           '10,000 Days',
-          'Metal',
+          'Progressive  Metal',
           require('./assets/sounds/the-pot.mp3'),
           require('./assets/img/10000-days.jpg'),
           require('./assets/img/tool.jpg')
         ),
         new Song(
-          'Buggin Out',
-          'A Tribe Called Quest',
-          'The Low End Theory',
-          'Rap',
-          require('./assets/sounds/buggin-out.mp3'),
-          require('./assets/img/a-low-end-theory.jpg'),
-          require('./assets/img/a-tribe-called-quest.jpg')
-        )
+          'Two People in a Room',
+          'Wire',
+          '154',
+          'Post Punk',
+          require('./assets/sounds/two-people-in-a-room.mp3'),
+          require('./assets/img/154.jpg'),
+          require('./assets/img/wire.jpg')
+        ),
+        new Song(
+          'Maps in Her Wrists and Arms',
+          'And Also The Trees',
+          'Virus Meadow',
+          'Cold Wave',
+          require('./assets/sounds/maps-in-her-wrists-and-arms.mp3'),
+          require('./assets/img/virus-meadow.jpg'),
+          require('./assets/img/and-also-the-trees.jpg')
+        ),
       ],
     }
   },
@@ -254,6 +272,7 @@ export default {
       this.play(this.current);
       }.bind(this));
       this.isPlaying = true;
+      console.log(Song)
     },
 
     progressBar () {
@@ -426,10 +445,11 @@ header
 .player {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   padding: 5% ;
   padding-bottom: 0% ;
   min-height: 73vh;
+  padding-block: 10%;
 }
 
 .playerfull {
@@ -439,26 +459,42 @@ header
   background-position:center;
 }
 
+.song-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .song-informations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #ffffff;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 700;
   font-variant: small-caps;
-  text-align: center;
+  margin-block: 25px;
+}
+
+.song-informations .title {
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .song-informations .artist {
-  color: #06ae97;
-  font-weight: 400;
+  color: #03eac5;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .song-informations .album {
-  font-size: 18px;
-  color:  #ff7600;
+  font-size: 15px;
+  color:  #fff;
 }
 
 .song-informations .style {
   font-size: 14px;
+  font-weight: lighter;
   font-variant: normal;
   color:  #ffffff;
   margin-top: 15px;
