@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import {Song} from "./classes.js"
 export default {
   name: 'App',
   data () {
@@ -60,177 +61,177 @@ export default {
       percent: "",
       player: new Audio(),
       songs: [
-        {
-          title: 'Shitataru Morou',
-          artist: 'Dir en Grey',
-          album: 'Dum Spiro Spero',
-          style: 'Metal',
-          src: require('./assets/sounds/shitataru-morou.mp3'),
-          image: require('./assets/img/dum-spiro-spero.jpg'),
-          backgd: require('./assets/img/direngrey.jpg')
-        },
-        {
-          title: 'For Jasmine',
-          artist: 'Bôa',
-          album: 'Twilight',
-          style: 'Alternative Rock',
-          src: require('./assets/sounds/for-jasmine.mp3'),
-          image: require('./assets/img/twilight-album.jpg'),
-          backgd: require('./assets/img/boa.jpg')
-        },
-        {
-          title: 'Sextape ',
-          artist: 'Deftones',
-          album: 'Diamond Eyes',
-          style: 'Metal',
-          src: require('./assets/sounds/sextape.mp3'),
-          image: require('./assets/img/diamond-eyes.jpg'),
-          backgd: require('./assets/img/deftones.jpg')
-        },
-        {
-          title: 'Ghost Of Perdition',
-          artist: 'Opeth',
-          album: 'Ghost Reveries',
-          style: 'Metal',
-          src: require('./assets/sounds/ghost-of-perdition.mp3'),
-          image: require('./assets/img/ghost-reveries.jpg'),
-          backgd: require('./assets/img/opeth.jpg')
-        },
-         {
-          title: 'Theft Wandering And Lost',
-          artist: 'Cocteau Twins',
-          album: 'Four-Calendar Café',
-          style: 'Dream-Pop',
-          src: require('./assets/sounds/theft-and-wandering-around-lost.mp3'),
-          image: require('./assets/img/four-calendar-cafe.jpg'),
-          backgd: require('./assets/img/cocteau-twins.jpg')
-        },
-        {
-          title: 'The Headmaster Ritual',
-          artist: 'The Smiths',
-          album: 'Meat Is Murder',
-          style: 'Post-Punk',
-          src: require('./assets/sounds/the-headmaster-ritual.mp3'),
-          image: require('./assets/img/meat-is-murder.jpg'),
-          backgd: require('./assets/img/the-smiths.jpg')
-        },
-        {
-          title: 'Jigsaw Falling Into Place',
-          artist: 'Radiohead',
-          album: 'In Rainbows',
-          style: 'Alternative Rock',
-          src: require('./assets/sounds/jigsaw-falling-into-place.mp3'),
-          image: require('./assets/img/in-rainbows.jpg'),
-          backgd: require('./assets/img/radiohead.jpg')
-        },
-        {
-          title: 'Only',
-          artist: 'Nine Inch Nails',
-          album: 'With Teeth',
-          style: 'Electro',
-          src: require('./assets/sounds/only.mp3'),
-          image: require('./assets/img/with-teeth.jpg'),
-          backgd: require('./assets/img/nine-inch-nails.jpg')
-        },
-        {
-          title: 'Delete',
-          artist: 'Killing Joke',
-          album: 'Pylon',
-          style: 'Metal',
-          src: require('./assets/sounds/delete.mp3'),
-          image: require('./assets/img/pylon.jpg'),
-          backgd: require('./assets/img/killing-joke.jpg')
-        },
-        {
-          title: 'Latour',
-          artist: 'Sukekiyo',
-          album: 'Immortalis',
-          style: 'Metal',
-          src: require('./assets/sounds/latour.mp3'),
-          image: require('./assets/img/immortalis.jpg'),
-          backgd: require('./assets/img/sukekiyo.jpg')
-        },
-        {
-          title: 'Pale Shelter',
-          artist: 'Tears For Fears',
-          album: 'The Hurting',
-          style: 'New Wave',
-          src: require('./assets/sounds/pale-shelter.mp3'),
-          image: require('./assets/img/the-hurting.jpg'),
-          backgd: require('./assets/img/tears-for-fears.jpg')
-        },
-        {
-          title: 'Blackstar',
-          artist: 'David Bowie',
-          album: 'Blackstar',
-          style: 'Legendary',
-          src: require('./assets/sounds/blackstar.mp3'),
-          image: require('./assets/img/blackstar.jpg'),
-          backgd: require('./assets/img/david-bowie.jpg')
-        },
-        {
-          title: 'Oktrovenie',
-          artist: 'Irfan',
-          album: 'Irfan',
-          style: 'Ethereal',
-          src: require('./assets/sounds/oktrovenie.mp3'),
-          image: require('./assets/img/irfan-album.jpg'),
-          backgd: require('./assets/img/irfan.jpg')
-        },
-        {
-          title: 'Kuroi Niji',
-          artist: 'The Novembers',
-          album: 'Hallelujah',
-          style: 'Indie Rock',
-          src: require('./assets/sounds/kuroi-niji.mp3'),
-          image: require('./assets/img/hallelujah.jpg'),
-          backgd: require('./assets/img/the-novembers.jpg')
-        },
-        {
-          title: 'Only Shallow',
-          artist: 'My Bloody Valentine',
-          album: 'Loveless',
-          style: 'Shoegaze',
-          src: require('./assets/sounds/only-shallow.mp3'),
-          image: require('./assets/img/loveless.jpg'),
-          backgd: require('./assets/img/my-bloody-valentine.jpg')
-        },
-        {
-          title: 'Spellbound',
-          artist: 'Siouxsie And The Banshees',
-          album: 'Juju',
-          style: 'Post Punk',
-          src: require('./assets/sounds/spellbound.mp3'),
-          image: require('./assets/img/juju.jpg'),
-          backgd: require('./assets/img/siouxsie-and-the-banshees.jpg')
-        },
-        {
-          title: 'It\'s You',
-          artist: 'PJ Harvey',
-          album: 'Uh Huh Her',
-          style: 'Rock',
-          src: require('./assets/sounds/its-you.mp3'),
-          image: require('./assets/img/uhhuhher.jpg'),
-          backgd: require('./assets/img/pjharvey.jpg')
-        },
-        {
-          title: 'The Pot',
-          artist: 'Tool',
-          album: '10,000 Days',
-          style: 'Metal',
-          src: require('./assets/sounds/the-pot.mp3'),
-          image: require('./assets/img/10000-days.jpg'),
-          backgd: require('./assets/img/tool.jpg')
-        },
-        {
-          title: 'Buggin Out',
-          artist: 'A Tribe Called Quest',
-          album: 'The Low End Theory',
-          style: 'Rap',
-          src: require('./assets/sounds/buggin-out.mp3'),
-          image: require('./assets/img/a-low-end-theory.jpg'),
-          backgd: require('./assets/img/a-tribe-called-quest.jpg')
-        }
+        new Song(
+          'Shitataru Morou',
+          'Dir en Grey',
+          'Dum Spiro Spero',
+          'Metal',
+          require('./assets/sounds/shitataru-morou.mp3'),
+          require('./assets/img/dum-spiro-spero.jpg'),
+          require('./assets/img/direngrey.jpg')
+        ),
+        new Song(
+          'For Jasmine',
+          'Bôa',
+          'Twilight',
+          'Alternative Rock',
+          require('./assets/sounds/for-jasmine.mp3'),
+          require('./assets/img/twilight-album.jpg'),
+          require('./assets/img/boa.jpg')
+        ),
+        new Song(
+          'Sextape ',
+          'Deftones',
+          'Diamond Eyes',
+          'Metal',
+          require('./assets/sounds/sextape.mp3'),
+          require('./assets/img/diamond-eyes.jpg'),
+          require('./assets/img/deftones.jpg')
+        ),
+        new Song(
+          'Ghost Of Perdition',
+          'Opeth',
+          'Ghost Reveries',
+          'Metal',
+          require('./assets/sounds/ghost-of-perdition.mp3'),
+          require('./assets/img/ghost-reveries.jpg'),
+          require('./assets/img/opeth.jpg')
+        ),
+        new Song(
+          'Theft Wandering And Lost',
+          'Cocteau Twins',
+          'Four-Calendar Café',
+          'Dream-Pop',
+          require('./assets/sounds/theft-and-wandering-around-lost.mp3'),
+          require('./assets/img/four-calendar-cafe.jpg'),
+          require('./assets/img/cocteau-twins.jpg')
+        ),
+        new Song(
+          'The Headmaster Ritual',
+          'The Smiths',
+          'Meat Is Murder',
+          'Post-Punk',
+          require('./assets/sounds/the-headmaster-ritual.mp3'),
+          require('./assets/img/meat-is-murder.jpg'),
+          require('./assets/img/the-smiths.jpg')
+        ),
+        new Song(
+          'Jigsaw Falling Into Place',
+          'Radiohead',
+          'In Rainbows',
+          'Alternative Rock',
+          require('./assets/sounds/jigsaw-falling-into-place.mp3'),
+          require('./assets/img/in-rainbows.jpg'),
+          require('./assets/img/radiohead.jpg')
+        ),
+        new Song(
+          'Only',
+          'Nine Inch Nails',
+          'With Teeth',
+          'Electro',
+          require('./assets/sounds/only.mp3'),
+          require('./assets/img/with-teeth.jpg'),
+          require('./assets/img/nine-inch-nails.jpg')
+        ),
+        new Song(
+          'Delete',
+          'Killing Joke',
+          'Pylon',
+          'Metal',
+          require('./assets/sounds/delete.mp3'),
+          require('./assets/img/pylon.jpg'),
+          require('./assets/img/killing-joke.jpg')
+        ),
+        new Song(
+          'Latour',
+          'Sukekiyo',
+          'Immortalis',
+          'Metal',
+          require('./assets/sounds/latour.mp3'),
+          require('./assets/img/immortalis.jpg'),
+          require('./assets/img/sukekiyo.jpg')
+        ),
+        new Song(
+          'Pale Shelter',
+          'Tears For Fears',
+          'The Hurting',
+          'New Wave',
+          require('./assets/sounds/pale-shelter.mp3'),
+          require('./assets/img/the-hurting.jpg'),
+          require('./assets/img/tears-for-fears.jpg')
+        ),
+        new Song(
+          'Blackstar',
+          'David Bowie',
+          'Blackstar',
+          'Legendary',
+          require('./assets/sounds/blackstar.mp3'),
+          require('./assets/img/blackstar.jpg'),
+          require('./assets/img/david-bowie.jpg')
+        ),
+        new Song(
+          'Oktrovenie',
+          'Irfan',
+          'Irfan',
+          'Ethereal',
+          require('./assets/sounds/oktrovenie.mp3'),
+          require('./assets/img/irfan-album.jpg'),
+          require('./assets/img/irfan.jpg')
+        ),
+        new Song(
+          'Kuroi Niji',
+          'The Novembers',
+          'Hallelujah',
+          'Indie Rock',
+          require('./assets/sounds/kuroi-niji.mp3'),
+          require('./assets/img/hallelujah.jpg'),
+          require('./assets/img/the-novembers.jpg')
+        ),
+        new Song(
+          'Only Shallow',
+          'My Bloody Valentine',
+          'Loveless',
+          'Shoegaze',
+          require('./assets/sounds/only-shallow.mp3'),
+          require('./assets/img/loveless.jpg'),
+          require('./assets/img/my-bloody-valentine.jpg')
+        ),
+        new Song(
+          'Spellbound',
+          'Siouxsie And The Banshees',
+          'Juju',
+          'Post Punk',
+          require('./assets/sounds/spellbound.mp3'),
+          require('./assets/img/juju.jpg'),
+          require('./assets/img/siouxsie-and-the-banshees.jpg')
+        ),
+        new Song(
+          'It\'s You',
+          'PJ Harvey',
+          'Uh Huh Her',
+          'Rock',
+          require('./assets/sounds/its-you.mp3'),
+          require('./assets/img/uhhuhher.jpg'),
+          require('./assets/img/pjharvey.jpg')
+        ),
+        new Song(
+          'The Pot',
+          'Tool',
+          '10,000 Days',
+          'Metal',
+          require('./assets/sounds/the-pot.mp3'),
+          require('./assets/img/10000-days.jpg'),
+          require('./assets/img/tool.jpg')
+        ),
+        new Song(
+          'Buggin Out',
+          'A Tribe Called Quest',
+          'The Low End Theory',
+          'Rap',
+          require('./assets/sounds/buggin-out.mp3'),
+          require('./assets/img/a-low-end-theory.jpg'),
+          require('./assets/img/a-tribe-called-quest.jpg')
+        )
       ],
     }
   },
