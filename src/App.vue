@@ -14,9 +14,6 @@
                 <div class="artist">{{ current.artist }}</div>
                 <div class="album"> - {{ current.album }} - </div>
                 <div class="style">- {{ current.style }} -</div>
-                <div class="timer">
-                  <div class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</div> / <div class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</div>
-                </div>
               </div>
           </div>
         </section>
@@ -25,17 +22,21 @@
           <div class="progress-bar-slider"></div>
           </div>
         </div>
-        <section class="controls">
-          <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="shuffle controller icon">
-          <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller icon">
-          <img v-if="!isPlaying" @click="play" class="play control" src="./assets/logos/play.png" alt="play controller icon">
-          <img v-else @click="pause" class="pause control" src="./assets/logos/pause.png" alt="pause controller icon">
-          <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller icon">
-          <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="repeat controller icon">
+        <section class="controls-panel">
+          <div :style="{color: timerColor}" class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</div>
+          <div class="controls">
+            <img @click="shuffle" class="shuffle" src="./assets/logos/shuffle.png" alt="shuffle controller icon">
+            <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller icon">
+            <img v-if="!isPlaying" @click="play" class="play control" src="./assets/logos/play.png" alt="play controller icon">
+            <img v-else @click="pause" class="pause control" src="./assets/logos/pause.png" alt="pause controller icon">
+            <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller icon">
+            <img  @click="repeat" class="repeat" src="./assets/logos/repeat.png" alt="repeat controller icon">
+          </div>
+          <div class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</div>
         </section>
       </div>
       <section class="playlist scrollbar">
-        <h3>Playlist</h3>
+        <h3 class="playlist-title">Playlist</h3>
         <button v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src == current.src) ? 'song playing' : 'song'">
           {{ song.title }} - - <span class="artist-playlist">{{ song.artist }}</span>
         </button>
@@ -54,6 +55,7 @@ export default {
       isPlaying: false,
       progressBarWidth: "",
       progressBarColor: "",
+      timerColor: "",
       fraction: "",
       percent: "",
       player: new Audio(),
@@ -261,9 +263,11 @@ export default {
         this.progressBarWidth = this.percent + '%';
         if(this.isPlaying === true) {
           this.progressBarColor = "#0aebc5";
+          this.timerColor = "#0aebc5"
         }
         else {
-          this.progressBarColor = " #ff7600";
+          this.progressBarColor = "#ff7600";
+          this.timerColor = "#ff7600"
         }
       }
     },
@@ -350,6 +354,11 @@ export default {
   width: 5px;
   height: 10px;
   background-color: #fff;
+  transition: 0.5 ease-in-out;
+}
+
+.progress-bar:hover {
+  transform: scaleY(1.3);
 }
 
 *
@@ -454,51 +463,19 @@ header
   margin-top: 15px;
 }
 
-.song-informations .timer {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 10px;
-  color: #b0adc4;
-  background-color:#ffffff3a;
-  border-radius: 50px;
-  font-size: 0.7em;
-  font-weight: normal;
-  width: 150px;
-  color: #fff;
-}
-
-.song-informations .timer-duration {
-  font-weight: bold;
-}
-
-/**Options'appearance */
-.options {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-}
-
-.shuffle, .repeat {
-  width: 30px;
-  height: 30px;
-}
-
-.shuffle:hover, .repeat:hover {
-  filter: brightness(150%);
-  cursor: pointer;
-}
-
 /**Controls' appearance */
-.controls {
+.controls-panel {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px 15px;
   background-color: #05050b;
   min-height: 15vh;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
 }
 
 button {
@@ -521,15 +498,42 @@ button {
 .play, .pause{
   width: 80px;
   height: 80px;
+  display: block;
 }
 
 .next, .prev {
   width: 60px;
   height: 60px;
+  display: block;
 }
 
 .next:hover, .prev:hover {
   filter: brightness(150%);
+}
+
+.shuffle, .repeat {
+  width: 30px;
+  height: 30px;
+}
+
+.shuffle:hover, .repeat:hover {
+  filter: brightness(150%);
+  cursor: pointer;
+}
+
+.timer-current, .timer-duration {
+  align-self: flex-start;
+  font-weight: bolder;
+  margin-top: -10px;
+  font-size: 12px;
+}
+
+.timer-current {
+  margin-left: -5px;
+}
+
+.timer-duration {
+  margin-right: -5px;
 }
 
 /**Playlist's appearance */
@@ -542,7 +546,7 @@ button {
   min-height: 89vh;
 }
 
-.playlist h3 {
+.playlist-title {
   color: #ff7600;
   font-size: 28px;
   font-weight: 500;
@@ -579,7 +583,6 @@ button {
   background-size: 200% 200%;
   padding: 15px 30px;
   width: 100%;
-  transform: scale(1.1);
   animation: activateSong 5s ease-in infinite;
 }
 
@@ -588,8 +591,6 @@ button {
   50%{background-position:91% 100%}
   100%{background-position:10% 0%}
 }
-
-
 
 .artist-playlist {
   font-weight: 200;
