@@ -8,17 +8,23 @@
         <section class="player">
           <div class="songdescription">
             <img v-bind:src="current.image" class="cover">
-            <h2 class="song-title"> "{{ current.title }}"
-              <div>~</div>
-              <div class="artist">{{ current.artist }}</div>
-              <div class="album"> - {{ current.album }} - </div>
-              <div class="style">- {{ current.style }} -</div>
-              <div class="timer">
-                <span class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</span> / <span class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</span>
+              <div class="song-informations">
+                <h2 class="song-title"> "{{ current.title }}"</h2>
+                <div>~</div>
+                <div class="artist">{{ current.artist }}</div>
+                <div class="album"> - {{ current.album }} - </div>
+                <div class="style">- {{ current.style }} -</div>
+                <div class="timer">
+                  <div class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</div> / <div class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</div>
+                </div>
               </div>
-            </h2>
           </div>
         </section>
+        <div class="progress-bar-container">
+          <div :style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}
+          <div class="progress-bar-slider"></div>
+          </div>
+        </div>
         <section class="controls">
           <img @click="shuffle" class="option shuffle" src="./assets/logos/shuffle.png" alt="shuffle controller icon">
           <img @click="previous" class="prev control" src="./assets/logos/previous.png" alt="previous controller icon">
@@ -27,9 +33,6 @@
           <img  @click="next" class="next control" src="./assets/logos/next.png" alt="next controller icon">
           <img  @click="repeat" class="option repeat" src="./assets/logos/repeat.png" alt="repeat controller icon">
         </section>
-        <div class="sub-bar">
-          <div :style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}</div>
-        </div>
       </div>
       <section class="playlist scrollbar">
         <h3>Playlist</h3>
@@ -329,13 +332,24 @@ export default {
 
 <style>
 /**Layout */
-.sub-bar {
+.progress-bar-container {
   height: 8px;
   background-color: #1b182e;
 }
 
 .progress-bar {
   height: inherit;
+  position: relative;
+}
+
+.progress-bar-slider {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 10px;
+  background-color: #fff;
 }
 
 *
@@ -415,7 +429,7 @@ header
   background-position:center;
 }
 
-.song-title {
+.song-informations {
   color: #ffffff;
   font-size: 28px;
   font-weight: 700;
@@ -423,36 +437,39 @@ header
   text-align: center;
 }
 
-.song-title .artist {
+.song-informations .artist {
   color: #06ae97;
   font-weight: 400;
 }
 
-.song-title .album {
+.song-informations .album {
   font-size: 18px;
   color:  #ff7600;
 }
 
-.song-title .style {
+.song-informations .style {
   font-size: 14px;
   font-variant: normal;
   color:  #ffffff;
   margin-top: 15px;
 }
 
-.timer {
+.song-informations .timer {
+  display: flex;
+  justify-content: space-around;
   margin: 0 auto;
   margin-top: 20px;
-  padding: 5px;
+  padding: 10px;
   color: #b0adc4;
-  background-color:#1b182e77;
+  background-color:#ffffff3a;
   border-radius: 50px;
   font-size: 0.7em;
   font-weight: normal;
-  width: 60%;
+  width: 150px;
+  color: #fff;
 }
 
-.timer-duration {
+.song-informations .timer-duration {
   font-weight: bold;
 }
 
@@ -544,10 +561,12 @@ button {
   margin: auto;
   padding: 15px;
   background: #24243b50;
+  transition: 0.3s ease-in-out;
 }
 
 .playlist .song:hover {
   color:#0aebc5;
+  font-size: 14px;
   background-color: #09080f50;
 }
 
@@ -556,14 +575,26 @@ button {
   font-size: 14px;
   font-weight: 600;
   margin: auto;
-  background-image: linear-gradient(to right, #06ae92, #0aebc5);
+  background-image: linear-gradient(to right, #069e92, #0aebc5, #06ae92);
+  background-size: 200% 200%;
   padding: 15px 30px;
   width: 100%;
+  transform: scale(1.1);
+  animation: activateSong 5s ease-in infinite;
 }
+
+@keyframes activateSong {
+  0%{background-position:10% 0%}
+  50%{background-position:91% 100%}
+  100%{background-position:10% 0%}
+}
+
+
 
 .artist-playlist {
   font-weight: 200;
 }
+
 
 /**Responsive design */
 @media screen and (min-width: 1000px) {
