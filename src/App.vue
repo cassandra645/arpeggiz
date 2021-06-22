@@ -9,10 +9,11 @@
           <div class="song-description">
             <div class="song-informations">
               <h2 class="title"> {{ current.title }}</h2>
-              <div>~</div>
+              <!-- <div>~</div> -->
               <div class="artist">{{ current.artist }}</div>
-              <div class="album"> - {{ current.album }} - </div>
-              <div class="style">- {{ current.style }} -</div>
+              <!-- <div>~</div> -->
+              <div class="album">{{ current.album }}</div>
+              <div class="style">{{ current.style }}</div>
             </div>
             <img v-bind:src="current.image" class="cover">
           </div>
@@ -68,7 +69,7 @@ export default {
           'Progressive Metal',
           require('./assets/sounds/shitataru-morou.mp3'),
           require('./assets/img/dum-spiro-spero.jpg'),
-          require('./assets/img/direngrey.jpg')
+          require('./assets/img/dir-en-grey.jpg')
         ),
         new Song(
           'You \'ve Seen the Butcher',
@@ -155,19 +156,19 @@ export default {
           'Latour',
           'Sukekiyo',
           'Immortalis',
-          'Progressive Metal',
+          'Progressive Rock',
           require('./assets/sounds/latour.mp3'),
           require('./assets/img/immortalis.jpg'),
           require('./assets/img/sukekiyo.jpg')
         ),
         new Song(
-          'Pale Shelter',
-          'Tears For Fears',
-          'The Hurting',
+          'New Gold Dream',
+          'Simple Minds',
+          'New Gold Dream (81/82/83/84)',
           'New Wave',
-          require('./assets/sounds/pale-shelter.mp3'),
-          require('./assets/img/the-hurting.jpg'),
-          require('./assets/img/tears-for-fears.jpg')
+          require('./assets/sounds/new-gold-dream.mp3'),
+          require('./assets/img/new-gold-dream81-82-83-84.jpg'),
+          require('./assets/img/simple-minds.jpg')
         ),
         new Song(
           'Blackstar',
@@ -188,11 +189,11 @@ export default {
           require('./assets/img/irfan.jpg')
         ),
         new Song(
-          'Kuroi Niji',
+          'Tada Touku E',
           'The Novembers',
           'Hallelujah',
           'Indie Rock',
-          require('./assets/sounds/kuroi-niji.mp3'),
+          require('./assets/sounds/tada-touku-e.mp3'),
           require('./assets/img/hallelujah.jpg'),
           require('./assets/img/the-novembers.jpg')
         ),
@@ -206,12 +207,12 @@ export default {
           require('./assets/img/my-bloody-valentine.jpg')
         ),
         new Song(
-          'Spellbound',
+          'Sweetest Chill',
           'Siouxsie And The Banshees',
-          'Juju',
+          'Tinderbox',
           'Post Punk',
-          require('./assets/sounds/spellbound.mp3'),
-          require('./assets/img/juju.jpg'),
+          require('./assets/sounds/sweetest-chill.mp3'),
+          require('./assets/img/tinderbox.jpg'),
           require('./assets/img/siouxsie-and-the-banshees.jpg')
         ),
         new Song(
@@ -221,7 +222,7 @@ export default {
           'Rock',
           require('./assets/sounds/its-you.mp3'),
           require('./assets/img/uhhuhher.jpg'),
-          require('./assets/img/pjharvey.jpg')
+          require('./assets/img/pj-harvey.jpg')
         ),
         new Song(
           'The Pot',
@@ -482,8 +483,13 @@ header
 }
 
 .song-informations .artist {
-  color: #03eac5;
-  font-size: 20px;
+  /* color: #03eac5; */
+  background: linear-gradient(to right, #06739e, #0aebc5, #06739e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;  -webkit-text-fill-color: transparent;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -584,7 +590,11 @@ button {
 }
 
 .playlist-title {
-  color: #ff7600;
+  background: linear-gradient(to right, #06739e, #0aebc5, #06739e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;  -webkit-text-fill-color: transparent;
   font-size: 28px;
   font-weight: 500;
   font-variant: small-caps;
@@ -616,7 +626,7 @@ button {
   font-size: 14px;
   font-weight: 600;
   margin: auto;
-  background-image: linear-gradient(to right, #069e92, #0aebc5, #06ae92);
+  background-image: linear-gradient(to right, #06739e, #0aebc5, #06739e);
   background-size: 200% 200%;
   padding: 15px 30px;
   width: 100%;
