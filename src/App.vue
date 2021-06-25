@@ -4,25 +4,23 @@
       <img src="./assets/logos/arpeggiz-logo-base.png" alt="arpeggiz logo" class="app-logo">
     </header>
     <main>
-      <div class="playerfull" :style="{backgroundImage: `url(${current.backgd})`}">
+      <section class="playerfull" :style="{backgroundImage: `url(${current.backgd})`}">
         <section class="player">
           <div class="song-description">
             <div class="song-informations">
               <h2 class="title"> {{ current.title }}</h2>
-              <!-- <div>~</div> -->
               <div class="artist">{{ current.artist }}</div>
-              <!-- <div>~</div> -->
               <div class="album">{{ current.album }}</div>
               <div class="style">{{ current.style }}</div>
             </div>
             <img v-bind:src="current.image" class="cover">
           </div>
         </section>
-        <div class="progress-bar-container">
+        <section class="progress-bar-container">
           <div :style="{backgroundColor: progressBarColor, width: progressBarWidth}" class="progress-bar">{{ updateProgressBar() }}
           <div class="progress-bar-slider"></div>
           </div>
-        </div>
+        </section>
         <section class="controls-panel">
           <div :style="{color: timerColor}" class="timer-current">{{ turnSecondsToMinutes (player.currentTime) }}</div>
           <div class="controls">
@@ -35,11 +33,11 @@
           </div>
           <div class="timer-duration">{{ turnSecondsToMinutes (player.duration) }}</div>
         </section>
-      </div>
+      </section>
       <section class="playlist scrollbar">
         <h3 class="playlist-title">Playlist</h3>
         <button v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src == current.src) ? 'song playing' : 'song'">
-          {{ song.title }} - - <span class="artist-playlist">{{ song.artist }}</span>
+          <div>{{ song.title }}</div> <div class="artist-playlist">{{ song.artist }}</div>
         </button>
       </section>
     </main>
@@ -356,6 +354,28 @@ export default {
 </script>
 
 <style>
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body
+{
+  font-family: sans-serif;
+  color: #ffffff;
+  background-color: #0f0e18;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 100vw;
+  max-height: 100vw;
+  margin: 0 auto;
+}
+
 /**Layout */
 .progress-bar-container {
   height: 8px;
@@ -389,18 +409,6 @@ export default {
   box-sizing: border-box;
 }
 
-body
-{
-  font-family: sans-serif;
-  color: #ffffff;
-  background-color: #0f0e18;
-}
-
-main {
-  width: 100%;
-  margin: 0 auto;
-}
-
 /**Header's appearance */
 header
 {
@@ -411,32 +419,22 @@ header
   padding: 15px;
   background-color: #09080f;
   color: #ffffff;
-  max-height: 12vh;
+  height: 10vh;
 }
 
 .app-logo
 {
-  max-width: 150px;
+  max-width: 100px;
 	height: auto;
 }
 
 /**Player's appearance */
-.backgd {
-  position: absolute;
-  z-index: -1000;
-  width: 100%;
-  min-height: 450px;
-  top: 6%;
-  left: 0%;
-  filter: blur(2px) brightness(70%);
-}
-
 .cover {
   display: block;
   margin: auto;
   margin-bottom: 20px;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
 
 .cover:hover {
@@ -447,14 +445,12 @@ header
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: 5% ;
-  padding-bottom: 0% ;
-  min-height: 73vh;
   padding-block: 10%;
+  min-height: 73vh;
 }
 
 .playerfull {
-  max-height: 90vh;
+  height: 88vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center;
@@ -464,6 +460,7 @@ header
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
 }
 
 .song-informations {
@@ -513,11 +510,13 @@ header
   align-items: center;
   padding: 20px 15px;
   background-color: #05050b;
-  min-height: 15vh;
+  height: 14.8vh;
+  width: 100%;
 }
 
 .controls {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -539,14 +538,14 @@ button {
 }
 
 .play, .pause{
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   display: block;
 }
 
 .next, .prev {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   display: block;
 }
 
@@ -555,8 +554,8 @@ button {
 }
 
 .shuffle, .repeat {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .shuffle:hover, .repeat:hover {
@@ -645,19 +644,34 @@ button {
 
 
 /**Responsive design */
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 640px) {
+  .song-description {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .song-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   main {
     display: flex;
     flex-direction: row-reverse;
   }
 
-
-  .playerfull {
-    width: 80%;
+  header {
+    height: 5vh;
   }
 
-  .playlist {
-    width: 40%;
+  .controls-panel {
+    height: 7.5vh;
   }
 
   .playlist .song {
@@ -666,9 +680,14 @@ button {
     padding: 12.5px;
   }
 
+  .playerfull {
+    width: 80vw;
+    height: 95vh;
+  }
+
   .player
   {
-    height: 70vh;
+    height: 86.8vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -676,23 +695,33 @@ button {
   }
 
   .scrollbar {
-    width: 300px;
-    height: 100px;
+    width: 25vw;
+    height: 95vh;
     overflow-y: scroll;
     scrollbar-color: #302e3a #09080f50;
     scrollbar-width: thin;
   }
 
+  .scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #09080f50;
+}
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #302e3a;
+  }
+
   .play, .pause
   {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
   }
 
   .next, .prev
   {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
   }
 
   .option
@@ -700,5 +729,45 @@ button {
     width: 25px;
     height: 25px;
   }
+
+}
+
+@media screen and (min-width: 1280px) {
+  header {
+    height: 10vh;
+  }
+  .play, .pause
+  {
+    width: 50px;
+    height: 50px;
+  }
+
+  .next, .prev
+  {
+    width: 35px;
+    height: 35px;
+  }
+
+  .option
+  {
+    width: 25px;
+    height: 25px;
+  }
+
+  .playlist .song {
+    font-size: 13px;
+  }
+
+  .playlist .song:hover {
+    font-size: 16px;
+  }
+
+  .playlist .song.playing {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  
 }
 </style>
